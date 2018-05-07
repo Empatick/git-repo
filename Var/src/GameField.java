@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.VolatileImage;
 
 public class GameField extends JPanel {
     final int  SCALE = 40;
@@ -15,11 +16,8 @@ public class GameField extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         grid(g);
+        paintMob(g);
 
-        //Human human = new Human(4, 4);
-        //paintHuman(g , human);
-
-        paintMap(g);
     }
 
     public void grid(Graphics g) {
@@ -34,11 +32,6 @@ public class GameField extends JPanel {
         }
     }
 
-    public void paintHuman(Graphics g , Human human){
-        g.setColor(Color.green);
-        //g.drawOval(human.x * SCALE , human.y *SCALE - 1, SCALE -2 , SCALE -2);
-        g.fillOval(human.x * SCALE + 1 , human.y * SCALE + 1 , SCALE -2 , SCALE -2);
-    }
 
     public void paintHero(Graphics g ,Hero hero){
         System.out.println("paint");
@@ -50,22 +43,17 @@ public class GameField extends JPanel {
         g.fillOval(     hero.x * SCALE + 1 , hero.y * SCALE + 1 , SCALE -2 , SCALE -2);
     }
 
-    public void paintMap(Graphics g){
-        Map map = new Map();
-        for (int i = 0 ; i < x; i++){
-            for(int j = 0 ; j < y ;j++) {
-                System.out.println(i + " " + j);;
-                if(map.maps[i][j] == null) {
 
-                }else if(map.maps[i][j].hero.race.equals("Humen")){
-                    System.out.println("Humen");;
-                    paintHero(g , map.maps[i][j].hero);
-                }else if(map.maps[i][j].hero.race == "Ork"){
+    public void paintMob(Graphics g){
+        DataObject dataObject = new DataObject();
+        for(int i = 0; i < dataObject.heroList.size(); i++){
+            switch (dataObject.heroList.get(i).race){
+                case "Humen":
+                    System.out.println("Humen");
+                case "Ork":
                     System.out.println("Ork");
-                    paintHero(g , map.maps[i][j].hero);
-                }
             }
         }
-    }
 
+    }
 }

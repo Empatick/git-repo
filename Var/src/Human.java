@@ -1,5 +1,6 @@
 import java.awt.*;
 
+
 public class Human extends Hero{
     GameField gameField;
 
