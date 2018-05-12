@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.VolatileImage;
+import TypeHero.Hero;
+import TypeHero.OrcSwordsman;
 
 public class GameField extends JPanel {
     final int  SCALE = 40;
-    final int x = 8;
-    final int y = 8;
+    final int x = 320;
+    final int y = 320;
+
 
 
     GameField(){
@@ -16,7 +18,7 @@ public class GameField extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         grid(g);
-        paintMob(g);
+        paintHero(g , new OrcSwordsman(1 , 2));
 
     }
 
@@ -35,25 +37,27 @@ public class GameField extends JPanel {
 
     public void paintHero(Graphics g ,Hero hero){
         System.out.println("paint");
-        if(hero.race.equals("Ork")) {
+        if(hero.getRace().equals("Ork")) {
             g.setColor(Color.RED);
-        }else if(hero.race.equals("Humen")){
+        }else if(hero.getRace().equals("Humen")){
             g.setColor(Color.green);
         }
-        g.fillOval(     hero.x * SCALE + 1 , hero.y * SCALE + 1 , SCALE -2 , SCALE -2);
+        g.fillOval(     hero.getX() * SCALE + 1 , hero.getY() * SCALE + 1 , SCALE -2 , SCALE -2);
     }
 
 
-    public void paintMob(Graphics g){
-        DataObject dataObject = new DataObject();
-        for(int i = 0; i < dataObject.heroList.size(); i++){
-            switch (dataObject.heroList.get(i).race){
-                case "Humen":
-                    System.out.println("Humen");
-                case "Ork":
-                    System.out.println("Ork");
-            }
-        }
+//    public void paintMob(Graphics g){
+//        DataObject dataObject = new DataObject();
+//        for(int i = 0; i < dataObject.heroList.size(); i++){
+//            switch (dataObject.heroList.get(i).race){
+//                case "Humen":
+//                    System.out.println("Humen");
+//                case "Ork":
+//                    System.out.println("Ork");
+//            }
+//        }
+//
+//    }
 
-    }
+
 }

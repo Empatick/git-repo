@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import TypeHero.*;
 
 public class DataObject {
     public DataObject(){
-        heroList.add(new Ork(2 , 3));
+
 
     }
 
-    public static ArrayList<Hero> heroList = new ArrayList<>();
+    public static ArrayList<TypeHero.Hero> heroList = new ArrayList<>();
 }
